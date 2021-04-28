@@ -1,0 +1,17 @@
+<h1>blog</h1>
+<%= link_to '新規投稿', new_blog_path %>
+
+<table class="ggg">
+  <tr>
+    <th>タイトル</th>
+    <th>投稿内容</th>
+  </tr>
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.content %></td>
+    <td><%= link_to '詳細を確認する', blog_path(blog.id) %></td>
+    <td><%= link_to "つぶやきを編集する", edit_blog_path(blog.id) %></td>
+    <td><%= link_to 'つぶやきを削除する', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>
+</table>
