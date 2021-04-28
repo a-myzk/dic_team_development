@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DicTeamDevelopment</title>
+    <title>RailsAssignment2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <header class="header">
+      <h1 class = "header_title">2</h1>
+      <div class="menu">
+        <% if logged_in? %>
+          <%= link_to 'Home', blogs_path, class: 'links' %>
+          <%= link_to "Profile", user_path(current_user.id), class: 'links' %>
+          <%= link_to "Logout", session_path(current_user.id), class: 'links', method: :delete %>
+          <p>ユーザー名: <%= current_user.name %></p>
+        <% else %>
+          <%= link_to "Sign up", new_user_path, class: 'links' %>
+          <%= link_to "Login", new_session_path, class: 'links' %>
+        <% end %>
+      </div>
+    </header>
+    <div class="content_area">
+      <div class="notification">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+      </div>
+      <%= yield %>
+    </div>
+    
+    <footer class="footer">
+      
+    </footer>
   </body>
 </html>

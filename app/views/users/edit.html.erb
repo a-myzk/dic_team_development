@@ -1,0 +1,6 @@
+<% provide(:button_text, 'Save changes')%>
+<h1>Update profile</h1>
+<%= render 'form' %>
+<div class="link_button2">
+  <%= link_to 'Unchange profile', user_path(current_user.id) %>
+</div>
